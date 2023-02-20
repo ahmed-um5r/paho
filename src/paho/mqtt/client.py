@@ -1046,7 +1046,8 @@ class Client(object):
 
         if on_pre_connect:
             try:
-                on_pre_connect(self, self._userdata)
+                print('')
+#                on_pre_connect(self, self._userdata)
             except Exception as err:
                 self._easy_log(
                     MQTT_LOG_ERR, 'Caught exception in on_pre_connect: %s', err)
@@ -1860,10 +1861,13 @@ class Client(object):
     def on_pre_connect(self):
         """If implemented, called immediately prior to the connection is made
         request."""
-        return self._on_pre_connect
+#        return self._on_pre_connect
+        return True
 
     @on_pre_connect.setter
     def on_pre_connect(self, func):
+        return True
+
         """ Define the pre_connect callback implementation.
 
         Expected signature:
@@ -1876,8 +1880,8 @@ class Client(object):
             instance which this callback is being attached to)
 
         """
-        with self._callback_mutex:
-            self._on_pre_connect = func
+#        with self._callback_mutex:
+#            self._on_pre_connect = func
 
     def pre_connect_callback(self):
         def decorator(func):
