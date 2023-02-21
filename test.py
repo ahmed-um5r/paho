@@ -34,10 +34,11 @@ while True:
         response = xbee.wait_read_frame()
         
         # Convert the payload to a string
-        payload ="D0"
+        response_string = 'id ' + str(response['id'])+' status ' +str(response['status'])
+        res=str(response_string)
         
         # Publish the payload to the MQTT broker
-        client.publish("example/topic", response)
+        client.publish("example/topic", res)
     except KeyboardInterrupt:
         break
 
